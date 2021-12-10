@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello from GoLang</title>
+    <style>
+        body {
+            background-color: #2D2D2D;
+        }
+
+        h1 {
+            color: #C26356;
+            font-size: 30px;
+            font-family: Menlo, Monaco, fixed-width;
+        }
+        p {
+            color: white;
+            font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
+        }
+    </style>
+</head>
+<body>
+    {{if .Name}}
+        <p>Hello, {{.Name}}!</p>
+    {{else}}
+        <p>Hello, World!</p>
+    {{end}}
+    <p>The date today is {{.Date}}</p>
+    <p>And the time is {{.Time}}</p>
+</body>
+</html>
