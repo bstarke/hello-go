@@ -20,8 +20,8 @@ func main() {
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
 
-	now := time.Now()              // find the time right now
-	HomePageVars := PageVariables{ //store the date and time in a struct
+	now := time.Now()
+	HomePageVars := PageVariables{
 		Name: r.URL.Path[1:],
 		Date: now.Format("Jan 2, 2006"),
 		Time: now.Format("3:04:05 PM"),

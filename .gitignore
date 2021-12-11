@@ -6,9 +6,7 @@
 *.dll
 *.so
 *.dylib
-hellomac
-hello
-HelloGo
+hello*
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
@@ -18,6 +16,9 @@ HelloGo
 
 # Go workspace file
 go.work
+
+# Test binary, built with `go test -c`
+*.test
 
 # misc
 .DS_Store
