@@ -1,11 +1,17 @@
 package main
 
 import (
+	"embed"
+	_ "embed"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
+
+//go:embed templates/index.html
+var f embed.FS
 
 type PageVariables struct {
 	Name string
@@ -15,7 +21,7 @@ type PageVariables struct {
 
 func main() {
 	http.HandleFunc("/", HomePage)
-	log.Fatal(http.ListenAndServe(":8090", nil))
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
@@ -27,7 +33,7 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 		Time: now.Format("3:04:05 PM"),
 	}
 
-	t, err := template.ParseFiles("templates/index.html") //parse the html file homepage.html
+	t, err := template.ParseFS(f, "templates/index.html") //parse the html file homepage.html
 	if err != nil {                                       // if there is an error
 		log.Print("template parsing error: ", err) // log it
 	}
