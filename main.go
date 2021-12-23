@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	_ "embed"
 	"html/template"
 	"log"
 	"net/http"
