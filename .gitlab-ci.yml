@@ -34,4 +34,4 @@ deployment:
     - helm upgrade ${APP_NAME} ./golangweb --install --values=./values.yaml --set image.tag=$IMAGE_TAG --namespace hello
   only:
     variables:
-      - $IMAGE_TAG != ''
+      - $IMAGE_TAG != ""
