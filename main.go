@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
 	"time"
 )
 
@@ -20,7 +19,7 @@ type PageVariables struct {
 
 func main() {
 	http.HandleFunc("/", HomePage)
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
