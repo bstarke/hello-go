@@ -37,8 +37,9 @@ compile:
 
 deployment:
   stage: deploy
+  image: alpine/helm:latest
   script:
     - helm upgrade ${APP_NAME} ./golangweb --install --values=./values.yaml --set image.tag=$IMAGE_SHA --namespace hello
   rules:
-    - if: $IMAGE_SHA != ""
+    - if: $IMAGE_SHA != "" && $IMAGE_SHA != "latest"
       when: always
