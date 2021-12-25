@@ -37,7 +37,9 @@ compile:
 
 deployment:
   stage: deploy
-  image: harbor.home.starkenberg.net/hub/thorstenhans/helm3
+  image:
+    name: harbor.home.starkenberg.net/hub/alpine/helm
+    entrypoint: [""]
   script:
     - echo "IMAGE_SHA = " $IMAGE_SHA
     - helm init --client-only
