@@ -42,7 +42,6 @@ deployment:
     entrypoint: [""]
   script:
     - echo "IMAGE_SHA = " $IMAGE_SHA
-    - helm init --client-only
     - helm upgrade hello-go ./golangweb --install --values=./values.yaml --set image.tag=$IMAGE_SHA --namespace hello
   rules:
     - if: $IMAGE_SHA != "" && $IMAGE_SHA != "latest"
