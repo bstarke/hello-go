@@ -1,4 +1,4 @@
-image: golang:latest
+image: harbor.home.starkenberg.net/hub/library/golang:latest
 
 variables:
   REPO_NAME: git.home.starkenberg.net/bstarke/hello-go
@@ -37,7 +37,7 @@ compile:
 
 deployment:
   stage: deploy
-  image: alpine/helm:latest
+  image: harbor.home.starkenberg.net/hub/thorstenhans/helm3
   script:
     - echo "IMAGE_SHA = " $IMAGE_SHA
     - helm init --client-only
