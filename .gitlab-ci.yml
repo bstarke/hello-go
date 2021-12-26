@@ -2,7 +2,7 @@ image: harbor.home.starkenberg.net/hub/library/golang:latest
 
 variables:
   REPO_NAME: git.home.starkenberg.net/bstarke/hello-go
-  IMAGE_SHA: ""
+  IMAGE_TAG: ""
 
 before_script:
   - mkdir -p $GOPATH/src/$(dirname $REPO_NAME)
@@ -21,7 +21,7 @@ test:
     - go vet $(go list ./... | grep -v /vendor/)
     - go test -race $(go list ./... | grep -v /vendor/)
   rules:
-    - if: $IMAGE_SHA == ""
+    - if: $IMAGE_TAG == ""
       when: always
 
 compile:
@@ -32,7 +32,7 @@ compile:
     paths:
       - hellogo
   rules:
-    - if: $IMAGE_SHA == ""
+    - if: $IMAGE_TAG == ""
       when: always
 
 deployment:
@@ -41,8 +41,8 @@ deployment:
     name: harbor.home.starkenberg.net/hub/alpine/helm
     entrypoint: [""]
   script:
-    - echo "IMAGE_SHA = " $IMAGE_SHA
-    - helm upgrade hello-go ./golangweb --install --values=./values.yaml --set image.tag=$IMAGE_SHA --namespace hello
+    - echo "IMAGE_TAG = " $IMAGE_TAG
+    - helm upgrade hello-go ./golangweb --install --values=./values.yaml --set image.tag=$IMAGE_TAG --namespace hello
   rules:
-    - if: $IMAGE_SHA != "" && $IMAGE_SHA != "latest"
+    - if: $IMAGE_TAG != "" && $IMAGE_TAG != "latest"
       when: always
